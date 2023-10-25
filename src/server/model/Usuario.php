@@ -1,4 +1,5 @@
 <?php
+
     namespace Usuario;
 
     require_once 'server/Database.php';
