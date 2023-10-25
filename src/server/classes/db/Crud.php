@@ -1,6 +1,9 @@
 <?php
 
     namespace Crud;
+
+    require_once 'Acess.php';
+
     interface Crud{
 
         function select($dados): array;

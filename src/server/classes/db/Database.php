@@ -3,6 +3,7 @@
     namespace Database;
 
     require_once 'Keys.php';
+    require_once 'index.php';
 
     use Keys\Keys, PDO, PDOException;
 

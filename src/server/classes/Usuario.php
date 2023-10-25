@@ -3,6 +3,7 @@
 
     require_once 'db/Database.php';
     require_once 'db/Crud.php';
+    require_once 'index.php';
 
 
     use PDO, PDOException, Database\Database, Crud\Crud;

@@ -2,6 +2,8 @@
  
     namespace Keys;
 
+    require_once 'index.php';
+
     abstract class Keys{
     
         protected $host = "localhost";
