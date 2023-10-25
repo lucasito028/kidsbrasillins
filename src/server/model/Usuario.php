@@ -1,8 +1,8 @@
 <?php
     namespace Usuario;
 
-    require_once 'db/Database.php';
-    require_once 'db/Crud.php';
+    require_once 'server/Database.php';
+    require_once 'server/Crud.php';
     require_once 'index.php';
 
 
