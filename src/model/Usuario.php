@@ -11,7 +11,8 @@
     
     final class Usuario extends Database implements Crud{
 
-        function select($dados): array{
+        
+        final function select($dados): array{
 
             try{
     
@@ -42,19 +43,144 @@
             }
         }
 
-        function insert($dados){
 
+        final function insert($dados){
+
+            try{
+            
+                $this -> conn = $this -> connect();
+        
+                    if($this -> conn){
+                        
+                        $stmt = $this -> conn -> prepare(
+                        "insert into 
+                        PESSOA (FKIDTIPOPESSOA, NOME, SOBRENOME) 
+                        values (1, :nome, :sobrenome)"
+                        );
+        
+                        $stmt->bindParam(":nome", $dados["NMCLIENTE"], PDO::PARAM_STR);
+                        $stmt->bindParam(":sobrenome", $dados["SBCLIENTE"], PDO::PARAM_STR);
+
+                        $result = $stmt->execute();
+        
+                        if($result){
+        
+                            return "success";
+        
+                        }else{
+        
+                            return "fail";
+        
+                        }
+        
+        
+                    }else{
+                        return "paunahoradeconectar";
+                    }
+        
+        
+                }
+        
+                catch(PDOException $err){
+        
+                    return "Erro". $err->getMessage();
+        
+                }
+        
         }
 
-        function update($dados){
 
+        final function update($dados){
+            
+            try{
+            
+                $this -> conn = $this -> connect();
+        
+                    if($this -> conn){
+                        
+                        $stmt = $this -> conn -> prepare(
+                        "update pessoa set NOME = :nome,
+                        SOBRENOME = :sobrenome where CPF = :id"
+                        );
+
+                        $stmt->bindParam(":nome", $dados["NMCLIENTE"], PDO::PARAM_STR);
+                        $stmt->bindParam(":sobrenome", $dados["SBCLIENTE"], PDO::PARAM_STR);
+                        $stmt->bindParam(":id", $dados["CPFCLIENTE"], PDO::PARAM_INT);
+        
+
+                        $result = $stmt->execute();
+        
+                        if($result){
+                            
+                            return "success";
+        
+                        }else{
+        
+                            return "fail";
+        
+                        }
+        
+        
+                    }else{
+                        return "paunahoradeconectar";
+                    }
+        
+        
+                }
+        
+                catch(PDOException $err){
+        
+                    return "Erro". $err->getMessage();
+        
+                }
         }
 
-        function delete($dados){
 
-        }
+        final function delete($dados){
 
-        function view($dados){
+            try{
+            
+                $this -> conn = $this -> connect();
+        
+                    if($this -> conn){
+                        
+                        $stmt = $this -> conn -> prepare(
+                        "delete from pessoa 
+                        where CPF = :id"
+                        );
+        
+                        $stmt->bindParam(":id", $dados["CPFCLIENTE"], PDO::PARAM_INT);
+
+                        $result = $stmt->execute();
+        
+                        if($result){
+                            
+                            return "success";
+        
+                        }else{
+        
+                            return "fail";
+        
+                        }
+        
+        
+                    }else{
+                        return "paunahoradeconectar";
+                    }
+        
+        
+                }
+        
+                catch(PDOException $err){
+        
+                    return "Erro". $err->getMessage();
+        
+                }
+        
+            }
+        
+
+        final function view($dados){
 
         }
 
